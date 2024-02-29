@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GifPage extends StatelessWidget {
-  final Map _gifData;
+  final Map _meuGif;
 
-  GifPage(this._gifData);
+  const GifPage(this._meuGif, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class GifPage extends StatelessWidget {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
-          _gifData["title"],
+          _meuGif["title"],
           style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
@@ -20,14 +20,14 @@ class GifPage extends StatelessWidget {
       body: ListView(
         children: [
           Center(
-              child: Image.network(_gifData["images"]["fixed_height"]["url"])),
+              child: Image.network(_meuGif["images"]["fixed_height"]["url"])),
           TextButton(
               onPressed: () {},
               style: ButtonStyle(
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
                   backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255, 32, 69, 204))),
+                      const Color.fromARGB(255, 32, 69, 204))),
               child: const Text(
                 "Compartilhar",
                 style: TextStyle(
