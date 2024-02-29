@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
   final Map _meuGif;
 
   const GifPage(this._meuGif, {super.key});
+
+  void _compartilharGif() {
+    Share.share(_meuGif['images']['fixed_height']['url'],
+        subject: _meuGif['title']);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +26,27 @@ class GifPage extends StatelessWidget {
       body: ListView(
         children: [
           Center(
-              child: Image.network(_meuGif["images"]["fixed_height"]["url"])),
+            child: Image.network(_meuGif["images"]["fixed_height"]["url"]),
+          ),
           TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
-                  backgroundColor: MaterialStateProperty.all(
-                      const Color.fromARGB(255, 32, 69, 204))),
-              child: const Text(
-                "Compartilhar",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400),
+            onPressed: _compartilharGif,
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               )),
+              backgroundColor: MaterialStateProperty.all(
+                const Color.fromARGB(255, 32, 69, 204),
+              ),
+            ),
+            child: const Text(
+              "Compartilhar",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
         ],
       ),
     );
